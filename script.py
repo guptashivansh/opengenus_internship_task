@@ -10,7 +10,8 @@ def get_count_url(url):
 	soup = BeautifulSoup(r.text, "html.parser")
 	count = 0
 	urls={}
-	input_domain=url.split('//')[1].split('/')[0]
+	# input_domain=url.split('//')[1].split('/')[0]
+	input_domain=tldextract.extract(url).domain
 	for link in soup.find_all('a'):
 		# print(link.get('href'))
 		word =link.get('href')
@@ -18,10 +19,11 @@ def get_count_url(url):
 		if word is not None:
 			# Same website or domain calls
 			if "#" in word or word[0]=="/":
-				if not url in urls:
-					urls[url]=1
+				if not input_domain in urls:
+					# print(input_domain)
+					urls[input_domain]=1
 				else:
-					urls[url]+=1
+					urls[input_domain]+=1
 			elif "javascript:;" in word:
 				if not "JavascriptRenderingFunctionCall" in urls:
 					urls["JavascriptRenderingFunctionCall"]=1
