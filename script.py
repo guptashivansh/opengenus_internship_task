@@ -11,7 +11,7 @@ def get_count_url(url):
 	count = 0
 	urls={}
 	# input_domain=url.split('//')[1].split('/')[0]
-	input_domain=tldextract.extract(url).domain
+	input_domain=tldextract.extract(url).domain+"."+tldextract.extract(url).suffix
 	for link in soup.find_all('a'):
 		# print(link.get('href'))
 		word =link.get('href')
