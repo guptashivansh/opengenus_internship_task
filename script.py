@@ -31,7 +31,8 @@ def get_count_url(url):
 					urls["JavascriptRenderingFunctionCall"]+=1
 			else:
 				# main_domain=word.split('//')[1].split('/')[0]
-				main_domain=tldextract.extract(word).domain
+				main_domain=tldextract.extract(word).domain+"."+tldextract.extract(word).suffix
+				# print(main_domain)
 				if main_domain.split('.')[0]=='www':
 					main_domain = main_domain.replace("www.","")
 					# print(domain)
