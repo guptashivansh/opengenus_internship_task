@@ -24,14 +24,14 @@ def get_count_url(url):
 					urls[input_domain]=1
 				else:
 					urls[input_domain]+=1
-			elif "javascript:;" in word:
+			elif "javascript" in word:
 				if not "JavascriptRenderingFunctionCall" in urls:
 					urls["JavascriptRenderingFunctionCall"]=1
 				else:
 					urls["JavascriptRenderingFunctionCall"]+=1
 			else:
 				# main_domain=word.split('//')[1].split('/')[0]
-				main_domain=tldextract.extract(word).domain+"."+tldextract.extract(word).suffix
+				main_domain=tldextract.extract(word).domain+"." +tldextract.extract(word).suffix
 				# print(main_domain)
 				if main_domain.split('.')[0]=='www':
 					main_domain = main_domain.replace("www.","")
